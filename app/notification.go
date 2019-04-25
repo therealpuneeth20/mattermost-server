@@ -126,7 +126,7 @@ func (a *App) SendNotifications(post *model.Post, team *model.Team, channel *mod
 
 		if len(m.OtherPotentialMentions) > 0 && !post.IsSystemMessage() {
 			if result := <-a.Srv.Store.User().GetProfilesByUsernames(m.OtherPotentialMentions, team.Id); result.Err == nil {
-				channelMentions := model.UserSlice(result.Data.([]*model.User)).FilterByActive(true)
+				channelMentions := model.UserSlice(result.Data.([]*model.User))
 
 				var outOfChannelMentions model.UserSlice
 				var outOfGroupsMentions model.UserSlice
